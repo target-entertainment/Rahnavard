@@ -19,7 +19,7 @@
             color: #ffffff;
             font-family: 'Vazirmatn', sans-serif;
             overflow-x: hidden;
-            line-height: 1.6;
+            line-height: 1.7;
         }
 
         html {
@@ -57,10 +57,14 @@
             box-shadow: 0 0 15px rgba(230, 0, 0, 0.4);
         }
 
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+
         .nav-links a {
             color: #ddd;
             text-decoration: none;
-            margin-right: 25px;
             font-weight: 400;
             font-size: 1rem;
             transition: all 0.3s ease;
@@ -91,7 +95,7 @@
         /* ===== بخش هیرو (Hero Section) ===== */
         .hero {
             height: 100vh;
-            background-image: url('Walp.jpg');
+            background-image: url('Walp.jpg'); /* اصلاح شد */
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -109,7 +113,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(to bottom, rgba(5,5,5,0.3) 0%, rgba(5,5,5,0.9) 100%);
+            background: linear-gradient(to bottom, rgba(5,5,5,0.3) 0%, rgba(5,5,5,0.95) 100%);
             z-index: 1;
         }
 
@@ -299,6 +303,123 @@
             font-size: 1rem;
         }
 
+        /* ===== بخش اسکرین‌شات‌ها (Screenshots) ===== */
+        .screenshots {
+            padding: 100px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .screenshots h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 60px;
+        }
+
+        .screenshot-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+        }
+
+        .screenshot-item {
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--glass-border);
+            position: relative;
+            transition: all 0.4s ease;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+        }
+
+        .screenshot-item:hover {
+            transform: scale(1.03);
+            border-color: var(--accent-red);
+            box-shadow: 0 10px 40px rgba(230, 0, 0, 0.3);
+        }
+
+        .screenshot-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: filter 0.4s ease;
+        }
+
+        .screenshot-item:hover img {
+            filter: brightness(1.2);
+        }
+
+        .screenshot-placeholder {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 250px;
+            border: 2px dashed rgba(255, 255, 255, 0.2);
+            border-radius: 16px;
+            color: #666;
+            font-size: 1.2rem;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        /* ===== بخش نسخه کامل (Full Version) ===== */
+        .full-version {
+            padding: 120px 20px;
+            background: linear-gradient(135deg, #1a0000 0%, #050505 100%);
+            border-top: 1px solid var(--glass-border);
+            border-bottom: 1px solid var(--glass-border);
+            text-align: center;
+        }
+
+        .full-version-card {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 40px;
+            border: 1px solid rgba(230, 0, 0, 0.3);
+            box-shadow: 0 0 50px rgba(230, 0, 0, 0.1);
+        }
+
+        .full-version-card h2 {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #fff, #ff6666);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .full-version-card p {
+            font-size: 1.3rem;
+            color: #ccc;
+            margin-bottom: 30px;
+        }
+
+        .full-version-card .highlight {
+            color: var(--accent-red);
+            font-weight: 900;
+            font-size: 1.5rem;
+            text-shadow: 0 0 15px rgba(230, 0, 0, 0.5);
+        }
+
+        .full-version-card ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .full-version-card ul li {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-size: 1rem;
+            color: #ddd;
+        }
+
         /* ===== بخش نقشه راه (Roadmap) ===== */
         .roadmap {
             padding: 120px 20px;
@@ -399,9 +520,15 @@
             }
             .navbar {
                 padding: 15px 20px;
+                flex-direction: column;
+                gap: 15px;
+            }
+            .nav-links {
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
             }
             .nav-links a {
-                margin-right: 15px;
                 font-size: 0.9rem;
             }
             .hero-card h1 {
@@ -409,6 +536,12 @@
             }
             .hero-card {
                 padding: 30px 20px;
+            }
+            .screenshot-grid {
+                grid-template-columns: 1fr;
+            }
+            .full-version-card h2 {
+                font-size: 2rem;
             }
         }
     </style>
@@ -422,6 +555,8 @@
             <a href="#home">خانه</a>
             <a href="#about">درباره رهنورد</a>
             <a href="#features">ویژگی‌ها</a>
+            <a href="#screenshots">تصاویر</a>
+            <a href="#full-version">نسخه کامل</a>
             <a href="#roadmap">نقشه راه</a>
         </div>
     </nav>
@@ -429,9 +564,9 @@
     <!-- بخش هیرو -->
     <section id="home" class="hero">
         <div class="glass-card hero-card">
-            <img src="Banner.jpg" alt="Target Studio Banner" class="banner">
+            <img src="Banner.jpg" alt="Target Studio Banner" class="banner"> <!-- اصلاح شد -->
             <h1>به دنیای رهنورد خوش آمدید</h1>
-            <p>تجربه‌ای متفاوت از ریسینگ شبیه‌ساز ایرانی</p>
+            <p>تجربه‌ای متفاوت از ریسینگ شبیه‌ساز ایرانی، کاملاً آنلاین</p>
             <a href="#about" class="btn">کاوش در رهنورد</a>
         </div>
     </section>
@@ -445,8 +580,8 @@
                 از کنترل و شتاب‌گیری تا ترمز، پیچیدن و واکنش خودرو، همه چیز قراره طوری باشه که انگار واقعاً پشت فرمون نشستی.
             </p>
             <p>
-                ما توی تارگت استودیو هدفمون ساختن یه ریسینگ شبیه‌سازی جدیه که بتونه با بهترین‌های دنیا رقابت کنه. 
-                نسخه «مقدمه» اولین قدم این مسیره.
+                این بازی به صورت <strong>کاملاً آنلاین</strong> طراحی شده و شما می‌تونید با دوستانتون به رقابت بپردازید. 
+                ما توی تارگت استودیو هدفمون ساختن یه ریسینگ شبیه‌سازی جدیه که بتونه با بهترین‌های دنیا رقابت کنه.
             </p>
         </div>
         <div class="rn-logo-container">
@@ -471,9 +606,40 @@
                 <p>یه شهر وسیع و قابل گشت‌وگذار که می‌تونی توش آزادانه رانندگی کنی و لذت ببری.</p>
             </div>
             <div class="glass-card feature-card">
-                <h3>⚙️ فیزیک واقع‌گرایانه</h3>
-                <p>موتور فیزیک پیشرفته که رفتار خودرو رو در شرایط مختلف جاده شبیه‌سازی می‌کنه.</p>
+                <h3>🌐 کاملاً آنلاین</h3>
+                <p>تجربه‌ی مسابقات آنلاین، رقابت با دوستان و قابلیت‌های شبکه‌ای پیشرفته.</p>
             </div>
+        </div>
+    </section>
+
+    <!-- بخش اسکرین‌شات‌ها -->
+    <section id="screenshots" class="screenshots">
+        <h2>تصاویر بازی</h2>
+        <div class="screenshot-grid">
+            <!-- اسکرین‌شات ۱ -->
+            <div class="screenshot-item">
+                <img src="screen_1.png" alt="Screenshot 1">
+            </div>
+            <!-- اسکرین‌شات ۲ -->
+            <div class="screenshot-item">
+                <img src="screen_2.png" alt="Screenshot 2">
+            </div>
+        </div>
+    </section>
+
+    <!-- بخش نسخه کامل -->
+    <section id="full-version" class="full-version">
+        <div class="glass-card full-version-card">
+            <h2>تجربه‌ی کامل رهنورد</h2>
+            <p>نسخه مقدمه فقط شروع ماجراست!</p>
+            <p>در نسخه کامل، شاهد <span class="highlight">۲ تا ۳ برابر محتوا</span> نسبت به نسخه مقدمه خواهید بود.</p>
+            <ul>
+                <li>خودروهای بیشتر</li>
+                <li>پیست‌های جدید</li>
+                <li>مسابقات آنلاین پیشرفته</li>
+                <li>حالت‌های گیم‌پلی متنوع</li>
+                <li>و...</li>
+            </ul>
         </div>
     </section>
 
