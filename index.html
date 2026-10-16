@@ -3,21 +3,504 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>رهنورد</title>
+    <title>رهنورد | تارگت استودیو</title>
+    <!-- فونت وزیرمتن -->
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100;300;400;700;900&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: Tahoma, sans-serif;
-            background: #111;
-            color: #fff;
-            text-align: center;
-            padding: 50px;
+        /* ===== تنظیمات پایه ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-        h1 { color: #f39c12; }
+
+        body {
+            background-color: #050505;
+            color: #ffffff;
+            font-family: 'Vazirmatn', sans-serif;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* ===== متغیرهای رنگی ===== */
+        :root {
+            --accent-red: #e60000;
+            --glass-bg: rgba(255, 255, 255, 0.04);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+        }
+
+        /* ===== نوار ناوبری (Navbar) ===== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 40px;
+            background: rgba(5, 5, 5, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--glass-border);
+            z-index: 1000;
+        }
+
+        .navbar img {
+            height: 40px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(230, 0, 0, 0.4);
+        }
+
+        .nav-links a {
+            color: #ddd;
+            text-decoration: none;
+            margin-right: 25px;
+            font-weight: 400;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #fff;
+            text-shadow: 0 0 10px var(--accent-red);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-red);
+            transition: width 0.3s ease;
+            box-shadow: 0 0 8px var(--accent-red);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* ===== بخش هیرو (Hero Section) ===== */
+        .hero {
+            height: 100vh;
+            background-image: url('Walp.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            padding: 20px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(5,5,5,0.3) 0%, rgba(5,5,5,0.9) 100%);
+            z-index: 1;
+        }
+
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 50px;
+            box-shadow: var(--glass-shadow);
+            position: relative;
+            z-index: 2;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .hero-card {
+            max-width: 900px;
+            text-align: center;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .hero-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 50px rgba(230, 0, 0, 0.3);
+        }
+
+        .hero-card img.banner {
+            width: 100%;
+            max-width: 600px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5));
+        }
+
+        .hero-card h1 {
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 15px;
+            background: linear-gradient(45deg, #fff, #ff9999);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-card p {
+            font-size: 1.2rem;
+            color: #bbb;
+            margin-bottom: 35px;
+            font-weight: 300;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 40px;
+            background: var(--accent-red);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 20px rgba(230, 0, 0, 0.4);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: #ff1a1a;
+            box-shadow: 0 0 40px rgba(230, 0, 0, 0.8);
+            transform: scale(1.05);
+        }
+
+        /* ===== بخش درباره (About) ===== */
+        .about {
+            padding: 120px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 60px;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-text h2 {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 25px;
+            color: #fff;
+            position: relative;
+            display: inline-block;
+        }
+
+        .about-text h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            right: 0;
+            width: 60%;
+            height: 4px;
+            background: var(--accent-red);
+            border-radius: 2px;
+            box-shadow: 0 0 15px var(--accent-red);
+        }
+
+        .about-text p {
+            font-size: 1.2rem;
+            color: #aaa;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .rn-logo-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .rn-logo-container img {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 30px;
+            filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.1));
+            transition: all 0.5s ease;
+        }
+
+        .rn-logo-container img:hover {
+            filter: drop-shadow(0 0 50px rgba(230, 0, 0, 0.6));
+            transform: rotate(-3deg) scale(1.05);
+        }
+
+        /* ===== بخش ویژگی‌ها (Features) ===== */
+        .features {
+            padding: 100px 20px;
+            background: radial-gradient(circle at top, #110000 0%, #050505 70%);
+            border-top: 1px solid var(--glass-border);
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .features h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 60px;
+            color: #fff;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            text-align: center;
+            padding: 40px 30px;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(230, 0, 0, 0.15);
+            border-color: rgba(230, 0, 0, 0.4);
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--accent-red);
+        }
+
+        .feature-card p {
+            color: #999;
+            font-size: 1rem;
+        }
+
+        /* ===== بخش نقشه راه (Roadmap) ===== */
+        .roadmap {
+            padding: 120px 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .roadmap h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 60px;
+        }
+
+        .timeline {
+            position: relative;
+            padding-right: 30px;
+            border-right: 2px solid var(--glass-border);
+        }
+
+        .timeline-item {
+            margin-bottom: 50px;
+            position: relative;
+            padding: 20px 30px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item:hover {
+            border-color: var(--accent-red);
+            box-shadow: 0 0 20px rgba(230, 0, 0, 0.2);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            right: -38px;
+            top: 30px;
+            width: 16px;
+            height: 16px;
+            background: var(--accent-red);
+            border-radius: 50%;
+            box-shadow: 0 0 15px var(--accent-red);
+        }
+
+        .timeline-item h4 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .timeline-item p {
+            color: #aaa;
+            font-size: 0.95rem;
+        }
+
+        /* ===== فوتر (Footer) ===== */
+        footer {
+            text-align: center;
+            padding: 50px 20px;
+            background: #020202;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        footer img {
+            height: 50px;
+            margin-bottom: 20px;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+
+        footer img:hover {
+            opacity: 1;
+        }
+
+        footer p {
+            color: #555;
+            font-size: 0.9rem;
+        }
+
+        /* ===== واکنش‌گرایی (Responsive) ===== */
+        @media (max-width: 900px) {
+            .about {
+                flex-direction: column;
+                text-align: center;
+                gap: 40px;
+            }
+            .about-text h2::after {
+                right: 50%;
+                transform: translateX(50%);
+            }
+            .about-text p {
+                text-align: center;
+            }
+            .navbar {
+                padding: 15px 20px;
+            }
+            .nav-links a {
+                margin-right: 15px;
+                font-size: 0.9rem;
+            }
+            .hero-card h1 {
+                font-size: 1.8rem;
+            }
+            .hero-card {
+                padding: 30px 20px;
+            }
+        }
     </style>
 </head>
 <body>
-    <h1>🏁 رهنورد</h1>
-    <p>بازی ریسینگ شبیه‌ساز ایرانی از تارگت استودیو</p>
-    <p>به‌زودی اطلاعات بیشتر...</p>
+
+    <!-- نوار ناوبری -->
+    <nav class="navbar">
+        <img src="Icon.png" alt="Target Studio Logo">
+        <div class="nav-links">
+            <a href="#home">خانه</a>
+            <a href="#about">درباره رهنورد</a>
+            <a href="#features">ویژگی‌ها</a>
+            <a href="#roadmap">نقشه راه</a>
+        </div>
+    </nav>
+
+    <!-- بخش هیرو -->
+    <section id="home" class="hero">
+        <div class="glass-card hero-card">
+            <img src="Banner.png" alt="Target Studio Banner" class="banner">
+            <h1>به دنیای رهنورد خوش آمدید</h1>
+            <p>تجربه‌ای متفاوت از ریسینگ شبیه‌ساز ایرانی</p>
+            <a href="#about" class="btn">کاوش در رهنورد</a>
+        </div>
+    </section>
+
+    <!-- بخش درباره -->
+    <section id="about" class="about">
+        <div class="about-text">
+            <h2>رهنورد چیست؟</h2>
+            <p>
+                رهنورد یه بازی ریسینگ شبیه‌ساز ایرانی از تارگت استودیوئه که می‌خواد حس واقعی رانندگی رو بهت بده. 
+                از کنترل و شتاب‌گیری تا ترمز، پیچیدن و واکنش خودرو، همه چیز قراره طوری باشه که انگار واقعاً پشت فرمون نشستی.
+            </p>
+            <p>
+                ما توی تارگت استودیو هدفمون ساختن یه ریسینگ شبیه‌سازی جدیه که بتونه با بهترین‌های دنیا رقابت کنه. 
+                نسخه «مقدمه» اولین قدم این مسیره.
+            </p>
+        </div>
+        <div class="rn-logo-container">
+            <img src="RNLogo.png" alt="Rahnavard Logo">
+        </div>
+    </section>
+
+    <!-- بخش ویژگی‌ها -->
+    <section id="features" class="features">
+        <h2>محتویات نسخه مقدمه</h2>
+        <div class="grid">
+            <div class="glass-card feature-card">
+                <h3>🚗 ۳۰ ماشین ایرانی</h3>
+                <p>مجموعه‌ای متنوع از خودروهای محبوب ایرانی، با مدل‌سازی دقیق و فیزیک واقع‌گرایانه.</p>
+            </div>
+            <div class="glass-card feature-card">
+                <h3>🏁 ۱۱ پیست مسابقه</h3>
+                <p>از پیست‌های کلاسیک تا مسیرهای شهری، همه با جزئیات بالا و چالش‌های منحصربه‌فرد.</p>
+            </div>
+            <div class="glass-card feature-card">
+                <h3>🌆 شهر بزرگ و آزاد</h3>
+                <p>یه شهر وسیع و قابل گشت‌وگذار که می‌تونی توش آزادانه رانندگی کنی و لذت ببری.</p>
+            </div>
+            <div class="glass-card feature-card">
+                <h3>⚙️ فیزیک واقع‌گرایانه</h3>
+                <p>موتور فیزیک پیشرفته که رفتار خودرو رو در شرایط مختلف جاده شبیه‌سازی می‌کنه.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- بخش نقشه راه -->
+    <section id="roadmap" class="roadmap">
+        <h2>نقشه راه توسعه</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <h4>فاز ۱: نسخه مقدمه</h4>
+                <p>عرضه اولیه با ۳۰ ماشین، ۱۱ پیست و شهر بزرگ. هدف: دریافت بازخورد از بازیکنان.</p>
+            </div>
+            <div class="timeline-item">
+                <h4>فاز ۲: بهینه‌سازی و محتوا</h4>
+                <p>اضافه کردن ماشین‌ها و پیست‌های جدید، بهبود گرافیک و فیزیک بر اساس نظرات شما.</p>
+            </div>
+            <div class="timeline-item">
+                <h4>فاز ۳: نسخه کامل</h4>
+                <p>انتشار نسخه نهایی با چند برابر محتوای نسخه مقدمه، شامل مسابقات آنلاین و امکانات بیشتر.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- فوتر -->
+    <footer>
+        <img src="Icon.png" alt="Target Studio">
+        <p>© ۲۰۲۶ تارگت استودیو. تمامی حقوق محفوظ است.</p>
+    </footer>
+
 </body>
 </html>
